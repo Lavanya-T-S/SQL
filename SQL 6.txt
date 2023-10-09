@@ -1,0 +1,45 @@
+Write a solution to find the patient_id, patient_name, and conditions of the patients who have Type I Diabetes. Type I Diabetes always starts with DIAB1 prefix.
+
+Return the result table in any order.
+
+The result format is in the following example.
+
+ 
+
+Example 1:
+
+Input: 
+Patients table:
++------------+--------------+--------------+
+| patient_id | patient_name | conditions   |
++------------+--------------+--------------+
+| 1          | Daniel       | YFEV COUGH   |
+| 2          | Alice        |              |
+| 3          | Bob          | DIAB100 MYOP |
+| 4          | George       | ACNE DIAB100 |
+| 5          | Alain        | DIAB201      |
++------------+--------------+--------------+
+
+
+SELECT * FROM patients WHERE conditions REGEXP '\\bDIAB1'
+
+
+Output: 
++------------+--------------+--------------+
+| patient_id | patient_name | conditions   |
++------------+--------------+--------------+
+| 3          | Bob          | DIAB100 MYOP |
+| 4          | George       | ACNE DIAB100 | 
++------------+--------------+--------------+
+Explanation: Bob and George both have a condition that starts with DIAB1.
+
+
+SELECT * FROM patients: This part of the query selects all columns (*) from the "patients" table.
+
+WHERE conditions REGEXP '\bDIAB1': This part of the query filters the results based on a condition. It checks the "conditions" column to see if it matches the regular expression '\bDIAB1'.
+
+'\b' is a word boundary anchor in regular expressions. It ensures that "DIAB1" is treated as a whole word and not as part of another word.
+
+'DIAB1' is the pattern being matched. This means it's looking for the exact string "DIAB1" within the "conditions" column.
+
+So, this query will return all rows from the "patients" table where the "conditions" column contains the word "DIAB1."
