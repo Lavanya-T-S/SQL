@@ -67,3 +67,73 @@ Output:
 | Daniel       |
 | Frozen 2     |
 +--------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Find the name of the user who has rated the greatest number of movies. In case of a tie, return the lexicographically smaller user name.
+
+Users table:
++-------------+--------------+
+| user_id     |  name        |
++-------------+--------------+
+| 1           | Daniel       |
+| 2           | Monica       |
+| 3           | Maria        |
+| 4           | James        |
++-------------+--------------+
+MovieRating table:
++-------------+--------------+--------------+-------------+
+| movie_id    | user_id      | rating       | created_at  |
++-------------+--------------+--------------+-------------+
+| 1           | 1            | 3            | 2020-01-12  |
+| 1           | 2            | 4            | 2020-02-11  |           user_id 1 and 2-->3times has given the rating
+| 1           | 3            | 2            | 2020-02-12  |                   3-->2times given d rating
+| 1           | 4            | 1            | 2020-01-01  |                   4--->1times given rating
+| 2           | 1            | 5            | 2020-02-17  | 
+| 2           | 2            | 2            | 2020-02-01  |              so user 1,2 given greatest rating------>Daniel and Monica
+| 2           | 3            | 2            | 2020-03-01  |
+| 3           | 1            | 3            | 2020-02-22  | 
+| 3           | 2            | 4            | 2020-02-25  |                   lexical order ------->Daniel
++-------------+--------------+--------------+-------------+
+
+
+Find the movie name with the highest average rating in February 2020. In case of a tie, return the lexicographically smaller movie name.
+The result format is in the following example.
+Movies table:
++-------------+--------------+
+| movie_id    |  title       |
++-------------+--------------+
+| 1           | Avengers     |
+| 2           | Frozen 2     |
+| 3           | Joker        |
++-------------+--------------+
+
+MovieRating table:
++-------------+--------------+--------------+-------------+
+| movie_id    | user_id      | rating       | created_at  |                       m_id   created at       Aaverage
++-------------+--------------+--------------+-------------+
+| 1           | 1            | 3            | 2020-01-12  |                       1--    11,12  feb 2020    (4+2)/2=3 
+| 1           | 2            | 4            | 2020-02-11  |
+| 1           | 3            | 2            | 2020-02-12  |                       2      17,1    feb 2020    5+2/2=3.5 --->frozen2    
+| 1           | 4            | 1            | 2020-01-01  |
+| 2           | 1            | 5            | 2020-02-17  |                       3       22,25  feb          3+4/2=3.5 ---->joker
+| 2           | 2            | 2            | 2020-02-01  | 
+| 2           | 3            | 2            | 2020-03-01  |                        lexical order ---------->Frozen2
+| 3           | 1            | 3            | 2020-02-22  | 
+| 3           | 2            | 4            | 2020-02-25  | 
++-------------+--------------+--------------+-------------+
