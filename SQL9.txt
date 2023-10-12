@@ -69,18 +69,8 @@ Output:
 +--------------+
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+                              (or)
+                         with tracing
 
 
 
@@ -111,6 +101,12 @@ MovieRating table:
 | 3           | 2            | 4            | 2020-02-25  |                   lexical order ------->Daniel
 +-------------+--------------+--------------+-------------+
 
+(select name as results)
+from cte
+group by name
+order by count(*) desc,name asc limit 1)------>Daniel
+union
+
 
 Find the movie name with the highest average rating in February 2020. In case of a tie, return the lexicographically smaller movie name.
 The result format is in the following example.
@@ -137,3 +133,32 @@ MovieRating table:
 | 3           | 1            | 3            | 2020-02-22  | 
 | 3           | 2            | 4            | 2020-02-25  | 
 +-------------+--------------+--------------+-------------+
+
+
+(select title
+from cte 
+where Date_Format(created_at,'%y-%m')=2020-02
+group by title
+order by avg(rating) desc,title asc limit1)
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+(with cte as 
+select mr.(*),m.title,u.name 
+from MovieRating mr left join Users u
+using (user_id)
+left join Movies m
+using (movie_id))
+
+(select name as results)
+from cte
+group by name
+order by count(*) desc,name asc limit 1)------>Daniel
+union
+(select title
+from cte 
+where Date_Format(created_at,'%y-%m')=2020-02
+group by title
+order by avg(rating) desc,title asc limit1)
+
+
